@@ -7,6 +7,7 @@ import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 import api from '../../services/api';
+import {connect, disconnect, subscribeToNewIncidents} from '../../services/socket';
 
 export default function Incidents(){
 
@@ -41,7 +42,13 @@ export default function Incidents(){
         setLoading(false);
     }
 
+    function setupWebSocket(){
+        disconnect();
+        connect();
+    }
+
     useEffect(()=>{
+        setupWebSocket();
         loadIncidents();
     },[]);
 
