@@ -46,11 +46,14 @@ export default function Incidents(){
         disconnect();
         connect();
     }
-
+    
     useEffect(()=>{
-        setupWebSocket();
         loadIncidents();
+        setupWebSocket();
     },[]);
+    useEffect(()=>{
+        subscribeToNewIncidents(incident => setIncidents([...incidents, incident]));
+    }, [incidents])
 
     return(
         <View style={styles.container}>

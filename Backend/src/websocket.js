@@ -6,9 +6,7 @@ const connections = [];
 module.exports ={
     setupWebSocket(server){
         io = socketio(server);
-    },
-
-    connect(){
+    
         io.on('connection', (socket)=>{
             connections.push(socket.id);
             console.log(socket.id, "está conectado!");

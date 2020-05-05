@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const reload = require('./utils/reload');
 const socket = require('../websocket');
 
 module.exports = {
@@ -44,9 +45,8 @@ module.exports = {
             ong_id: ong_id
         }
 
-        const recipients =  socket.findConnections();
-        socket.sendMessage(recipients, 'new-incident', incident);
-
+        reload.liveReloadingStore(incident);
+        
         return response.json({id});
     },
 
