@@ -1,4 +1,6 @@
 const connection = require('../database/connection');
+const reload = require('./utils/reload');
+const socket = require('../websocket');
 
 module.exports = {
 
@@ -36,7 +38,15 @@ module.exports = {
             ong_id
         });
 
+        const incident = {
+            title: title,
+            description: description,
+            value: value,
+            ong_id: ong_id
+        }
 
+        reload.liveReloadingStore(incident);
+        
         return response.json({id});
     },
 

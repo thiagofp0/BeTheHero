@@ -2,7 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
 
+const { setupWebSocket } = require('./websocket');
+
+const http = require('http');
+
 const app = express();
+const server = http.Server(app);
+
+setupWebSocket(server);
+
+//const connections = [];
+
+/* io.on('connection', socket => {
+  console.log('Usuário conectado', socket.id);
+  connections.push(socket.id);
+}); */
 
 app.use(cors());
 app.use(express.json());
@@ -27,4 +41,4 @@ app.use(routes);
   * Request Body: Corpo da requisição, utilizado para criar ou alterar recursos
   */
 
-app.listen(3333);
+server.listen(3333);
