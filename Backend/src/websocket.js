@@ -9,7 +9,7 @@ module.exports ={
     
         io.on('connection', (socket)=>{
             connections.push(socket.id);
-            console.log(socket.id, "está conectado!");
+            //console.log(socket.id, "está conectado!");
         });
     },
 
